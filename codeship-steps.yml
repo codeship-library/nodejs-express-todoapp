@@ -1,0 +1,7 @@
+- name: lint
+  service: web
+  command: npm run lint
+
+- name: tests
+  service: web
+  command: npm test -- --forceExit

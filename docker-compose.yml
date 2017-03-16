@@ -1,0 +1,18 @@
+version: '2'
+services:
+  web:
+    build: ./
+    command: "npm run dev"
+    volumes:
+    - .:/usr/app/
+    ports:
+      - "3000:3000"
+    links:
+      - postgres
+    environment:
+      DATABASE_URL: "postgres://todoapp@postgres/todos"
+  postgres:
+    build: ./database
+    environment:
+      POSTGRES_USER: todoapp
+      POSTGRES_DB: todos

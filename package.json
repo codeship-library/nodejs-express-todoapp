@@ -1,0 +1,94 @@
+{
+  "name": "nodejs-express-todoapp",
+  "version": "1.0.0",
+  "description": "a Node.js/Express implementation of the Todo-Backend API spec",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kellyjandrews/nodejs-express-todoapp"
+  },
+  "scripts": {
+    "clean": "rm -rf build && mkdir build",
+    "build-server": "babel src --out-dir build -s --ignore src/__tests__/**",
+    "build": "npm run clean && npm run build-server",
+    "start": "npm run build && node ./build/index.js",
+    "lint": "eslint src",
+    "test": "jest",
+    "watch-tests": "esw src & jest --watchAll",
+    "dev": "nodemon --watch ./src --ignore ./src/__tests__ -x \"npm start\"",
+    "coverage": "jest --coverage"
+  },
+  "keywords": [
+    "todo-backend",
+    "api",
+    "node",
+    "express"
+  ],
+  "author": "Kelly J Andrews <kelly@kellyjandrews.com>",
+  "license": "MIT",
+  "engines": {
+    "node": "7.7.1"
+  },
+  "bugs": {
+    "url": "https://github.com/kellyjandrews/nodejs-express-todoapp/issues"
+  },
+  "homepage": "https://github.com/kellyjandrews/nodejs-express-todoapp",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "cors": "^2.8.1",
+    "express": "^4.15.2",
+    "express-simple-errors": "^1.0.0",
+    "isvalid": "^1.6.6",
+    "pg": "^6.1.3"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.23.0",
+    "babel-jest": "^19.0.0",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-es2015": "^6.22.0",
+    "eslint": "^3.17.1",
+    "eslint-watch": "^3.0.1",
+    "jest": "^19.0.2",
+    "nodemon": "^1.11.0",
+    "supertest": "^3.0.0"
+  },
+  "jest": {
+    "testPathIgnorePatterns": [
+      "<rootDir>/node_modules/"
+    ]
+  },
+  "babel": {
+    "presets": [
+      "es2015"
+    ]
+  },
+  "eslintConfig": {
+    "parserOptions": {
+      "ecmaVersion": 8,
+      "sourceType": "module"
+    },
+    "env": {
+      "node": true,
+      "es6": true,
+      "jest": true
+    },
+    "extends": "eslint:recommended",
+    "rules": {
+      "indent": [
+        "error",
+        2
+      ],
+      "linebreak-style": [
+        "error",
+        "unix"
+      ],
+      "quotes": [
+        "error",
+        "single"
+      ],
+      "semi": [
+        "error",
+        "always"
+      ]
+    }
+  }
+}

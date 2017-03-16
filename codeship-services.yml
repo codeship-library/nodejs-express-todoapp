@@ -1,0 +1,14 @@
+version: '2'
+services:
+  web:
+    build: ./
+    links:
+      - postgres
+    environment:
+      DATABASE_URL: "postgres://todoapp@postgres/todos"
+
+  postgres:
+    build: ./database
+    environment:
+      POSTGRES_USER: todoapp
+      POSTGRES_DB: todos
