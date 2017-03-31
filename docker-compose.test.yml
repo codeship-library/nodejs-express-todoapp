@@ -1,16 +1,16 @@
 version: '2'
 services:
-  web-test:
-    build: ./
-    command: "npm run watch-tests"
+  webtest:
+    build: .
+    command: bin/ci "npm run watch-tests"
     volumes:
     - .:/usr/app/
     links:
       - postgrestest
     environment:
-      DATABASE_URL: "postgres://todoapp@postgrestest/todos"
+      DATABASE_URL: postgres://todoapp@postgrestest/todos
   postgrestest:
-    build: ./database
+    image: postgres:9.6.2-alpine
     environment:
       POSTGRES_USER: todoapp
       POSTGRES_DB: todos

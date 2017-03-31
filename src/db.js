@@ -1,6 +1,6 @@
 import pg from 'pg';
 
-var conString = process.env.DATABASE_URL || 'postgres://todoapp@localhost:5432/todos';
+var conString = process.env.DATABASE_URL;
 
 function query(qs) {
   return new Promise((resolve, reject) => (

@@ -15,7 +15,8 @@
     "test": "jest",
     "watch-tests": "esw src & jest --watchAll",
     "dev": "nodemon --watch ./src --ignore ./src/__tests__ -x \"npm start\"",
-    "coverage": "jest --coverage"
+    "coverage": "jest --coverage",
+    "migrate": "node node_modules/db-migrate/bin/db-migrate up all"
   },
   "keywords": [
     "todo-backend",
@@ -45,6 +46,8 @@
     "babel-jest": "^19.0.0",
     "babel-polyfill": "^6.23.0",
     "babel-preset-es2015": "^6.22.0",
+    "db-migrate": "^0.10.0-beta.20",
+    "db-migrate-pg": "^0.1.11",
     "eslint": "^3.17.1",
     "eslint-watch": "^3.0.1",
     "jest": "^19.0.2",
