@@ -7,4 +7,3 @@ RUN mkdir -p /usr/app && cp -a /tmp/node_modules /usr/app
 
 WORKDIR /usr/app
 COPY ./ /usr/app/
-ENTRYPOINT ["./wait-for-postgres.sh"]
