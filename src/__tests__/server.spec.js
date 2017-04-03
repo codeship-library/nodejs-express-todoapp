@@ -7,7 +7,7 @@ describe('Todo-Backend API', () => {
   describe( 'the pre-requisites', () => {
     it( 'the api root responds to a GET (i.e. the server is up and accessible, CORS headers are set up)', (done) => {
       request(app)
-      .get('/')
+      .get('/todos')
       .expect(200)
       .end((err) => {
         expect(err).toBeNull();
@@ -16,7 +16,7 @@ describe('Todo-Backend API', () => {
     });
     it( 'the api root responds to a POST with the todo which was posted to it', (done) => {
       request(app)
-      .post('/')
+      .post('/todos')
       .send(todo)
       .expect(201)
       .end((err, res) => {
@@ -27,7 +27,7 @@ describe('Todo-Backend API', () => {
     });
     it( 'the api root responds successfully to a DELETE', (done) => {
       request(app)
-      .delete('/')
+      .delete('/todos')
       .expect(204)
       .end((err) => {
         expect(err).toBeNull();
@@ -36,7 +36,7 @@ describe('Todo-Backend API', () => {
     });
     it( 'after a DELETE the api root responds to a GET with a JSON representation of an empty array', (done) => {
       request(app)
-      .get('/')
+      .get('/todos')
       .expect(200)
       .end((err, res) => {
         expect(res.body).toEqual([]);
@@ -49,7 +49,7 @@ describe('Todo-Backend API', () => {
 
     beforeEach((done) => {
       request(app)
-      .delete('/')
+      .delete('/todos')
       .end((err) => {
         expect(err).toBeNull();
         done();
@@ -58,7 +58,7 @@ describe('Todo-Backend API', () => {
 
     it('adds a new todo to the list of todos at the root url', (done) => {
       request(app)
-      .post('/')
+      .post('/todos')
       .send(todo)
       .expect(201)
       .end((err, res) => {
@@ -69,7 +69,7 @@ describe('Todo-Backend API', () => {
     });
     it('sets up a new todo as initially not completed', (done) => {
       request(app)
-      .post('/')
+      .post('/todos')
       .send(todo)
       .expect(201)
       .end((err, res) => {
@@ -82,7 +82,7 @@ describe('Todo-Backend API', () => {
       let currentTodo;
       const client = request(app);
       client
-      .post('/')
+      .post('/todos')
       .send(todo)
       .expect(201)
       .end((err, res) => {
@@ -91,7 +91,7 @@ describe('Todo-Backend API', () => {
         expect(typeof res.body.url).toEqual('string');
         currentTodo = res.body;
         client
-        .get(`/${currentTodo.id}`)
+        .get(`/todos/${currentTodo.id}`)
         .end((err, res) => {
           expect(err).toBeNull();
           expect(res.body.id).toEqual(currentTodo.id);
@@ -106,14 +106,14 @@ describe('Todo-Backend API', () => {
       let currentTodo;
       const client = request(app);
       client
-      .post('/')
+      .post('/todos')
       .send(todo)
       .expect(201)
       .end((err, res) => {
         expect(err).toBeNull();
         currentTodo = res.body;
         client
-        .patch(`/${currentTodo.id}`)
+        .patch(`/todos/${currentTodo.id}`)
         .send({'title': 'different title now'})
         .end((err, res) => {
           expect(err).toBeNull();
@@ -126,7 +126,7 @@ describe('Todo-Backend API', () => {
       let currentTodo;
       const client = request(app);
       client
-      .post('/')
+      .post('/todos')
       .send(todo)
       .expect(201)
       .end((err, res) => {
@@ -134,7 +134,7 @@ describe('Todo-Backend API', () => {
         expect(res.body.completed).toEqual(false);
         currentTodo = res.body;
         client
-        .patch(`/${currentTodo.id}`)
+        .patch(`/todos/${currentTodo.id}`)
         .send({'completed': true})
         .end((err, res) => {
           expect(err).toBeNull();
@@ -147,19 +147,19 @@ describe('Todo-Backend API', () => {
       let currentTodo;
       const client = request(app);
       client
-      .post('/')
+      .post('/todos')
       .send(todo)
       .expect(201)
       .end((err, res) => {
         expect(err).toBeNull();
         currentTodo = res.body;
         client
-        .patch(`/${currentTodo.id}`)
+        .patch(`/todos/${currentTodo.id}`)
         .send({'title': 'new title', 'completed': true})
         .end((err) => {
           expect(err).toBeNull();
           client
-          .get(`/${currentTodo.id}`)
+          .get(`/todos/${currentTodo.id}`)
           .end((err,res) => {
             expect(err).toBeNull();
             expect(res.body.completed).toEqual(true);
@@ -173,14 +173,14 @@ describe('Todo-Backend API', () => {
       let currentTodo;
       const client = request(app);
       client
-      .post('/')
+      .post('/todos')
       .send(todo)
       .expect(201)
       .end((err, res) => {
         expect(err).toBeNull();
         currentTodo = res.body;
         client
-        .delete(`/${currentTodo.id}`)
+        .delete(`/todos/${currentTodo.id}`)
         .expect(204)
         .end((err) => {
           expect(err).toBeNull();
@@ -195,19 +195,19 @@ describe('Todo-Backend API', () => {
       let currentTodo;
       const client = request(app);
       client
-      .post('/')
+      .post('/todos')
       .send(todo)
       .expect(201)
       .end((err, res) => {
         expect(err).toBeNull();
         currentTodo = res.body;
         client
-        .patch(`/${currentTodo.id}`)
+        .patch(`/todos/${currentTodo.id}`)
         .send({'order': 123})
         .end((err) => {
           expect(err).toBeNull();
           client
-          .get(`/${currentTodo.id}`)
+          .get(`/todos/${currentTodo.id}`)
           .end((err,res) => {
             expect(err).toBeNull();
             expect(res.body.order).toEqual(123);

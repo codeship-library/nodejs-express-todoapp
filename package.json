@@ -10,13 +10,14 @@
     "clean": "rm -rf build && mkdir build",
     "build-server": "babel src --out-dir build -s --ignore src/__tests__/**",
     "build": "npm run clean && npm run build-server",
-    "start": "npm run build && node ./build/index.js",
+    "prestart": "npm run build && npm run migrate",
+    "start": "node ./build/index.js",
     "lint": "eslint src",
     "test": "jest",
     "watch-tests": "esw src & jest --watchAll",
     "dev": "nodemon --watch ./src --ignore ./src/__tests__ -x \"npm start\"",
     "coverage": "jest --coverage",
-    "migrate": "node node_modules/db-migrate/bin/db-migrate up all"
+    "migrate": "node ./node_modules/db-migrate/bin/db-migrate up all"
   },
   "keywords": [
     "todo-backend",

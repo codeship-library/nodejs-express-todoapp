@@ -11,3 +11,8 @@ services:
     environment:
       POSTGRES_USER: todoapp
       POSTGRES_DB: todos
+  deploy:
+    image: codeship/heroku-deployment
+    encrypted_env_file: deployment.env.encrypted
+    volumes:
+      - ./:/deploy

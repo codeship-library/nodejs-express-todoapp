@@ -7,11 +7,11 @@ import routes from './todos/routes';
 const app = express();
 
 // app middleware
-app.use(bodyParser.json({type: 'application/json'}));
 app.use(cors());
+app.use(bodyParser.json({type: 'application/json'}));
 app.disable('etag');
 
-app.use('/', routes());
+app.use('/todos', routes());
 
 const errorHandler = new ErrorHandler();
 

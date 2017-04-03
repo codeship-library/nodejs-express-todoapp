@@ -28,7 +28,7 @@ function cleanUpTodoObject(todo, baseUrl) {
     if (value === null || value === undefined) delete todo[key];
   }
 
-  todo.url = `${baseUrl}/${todo.id}`;
+  todo.url = `${baseUrl}/todos/${todo.id}`;
 
   return todo;
 }

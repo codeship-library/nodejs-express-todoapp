@@ -34,6 +34,10 @@ export default function ()  {
   }
 
   async function createTodo(req, res, next) {
+    if (req.body.order) {
+      req.body.position = req.body.order;
+      delete req.body.order;
+    }
     const todo = await db.create(todoTable, req.body)
     .catch((err) => next(err));
     res.locals.todo = todo[0];
@@ -57,6 +61,7 @@ export default function ()  {
       todo.position = todo.order;
       delete todo.order;
     }
+
     const updatedTodo = await db.update(todoTable, req.params.id, todo)
     .catch((err) => next(err));
     res.locals.todo = updatedTodo[0];

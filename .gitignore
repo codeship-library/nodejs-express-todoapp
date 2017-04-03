@@ -4,3 +4,5 @@ DS_Store
 npm-debug.log
 build
 jest
+*.env
+codeship.aes
