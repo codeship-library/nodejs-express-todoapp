@@ -18,15 +18,18 @@ Be sure to star/watch this repo to stay up-to-date with any changes. If you have
 
 There are a few resources to make sure you have available during this guide.
 
-1. A public, cloud based [Github](https://github.com/join)/[Gitlab](https://gitlab.com/users/sign_in#register)/[Bitbucket](https://bitbucket.org/account/signup/) Account - Git Repository service
+> This section makes the assumption that you will be following along from start to finish. If you wish to skip the deployment to Heroku, ignore step 5.
+
+1. [Docker CE](https://store.docker.com/search?type=edition&offering=community) - Container service everything will run on
+2. A public, cloud based [Github](https://github.com/join)/[Gitlab](https://gitlab.com/users/sign_in#register)/[Bitbucket](https://bitbucket.org/account/signup/) Account - Git Repository service
   + These must be cloud based, and not on your own servers.
   + You must be an admin for the repo
-2. [Heroku](https://signup.heroku.com/) Account - App hosting
 3. [Codeship](https://app.codeship.com/registrations/new) Account - CI/CD service
   + You can signup using any of the 3rd party logins or email/password
 4. [Codeship Jet CLI](https://documentation.codeship.com/pro/getting-started/installation/#installing-jet) - CLI tool for testing builds locally
   + This can also be installed with `brew cask install jet`
-5. [Docker CE](https://store.docker.com/search?type=edition&offering=community) - Container service everything will run on
+
+5. [Heroku](https://signup.heroku.com/) Account - App hosting
 
 Signup for each of these is free, and should only take you a few minutes if you don't already have one.  You can use your current accounts if you already have one available.
 
@@ -114,9 +117,11 @@ If everything is working properly, you can now test the build.
 {StepFinished=step_name:"tests" type:STEP_FINISHED_TYPE_SUCCESS}
 {StepFinished=step_name:"deploy" type:STEP_FINISHED_TYPE_SKIPPED}
 ```
-At this point, this build will work in Codeship. The deploy step was skipped because this build was not tagged.  If you run `jet steps --tag master` you would see the build process start immediately following. This will fail because there are a couple more steps to finalize.
+At this point, this build will work in Codeship. The deploy step was skipped because the local build was not tagged.  If you run `jet steps --tag master` you would see the build process start immediately following. This will fail because there are a couple more steps to finalize.
 
 Let's move on and do that now.
+
+> If you want to avoid running the deployment step and push the current code into your repository, you can create a new branch. This will bypass the deployment in Codeship and only run the build.
 
 ## Continuous Deployment to Heroku with Codeship
 
