@@ -5,6 +5,7 @@ services:
     command: bin/ci "npm run dev"
     volumes:
     - .:/usr/app/
+    - /usr/app/node_modules
     ports:
       - "3000:3000"
     links:
