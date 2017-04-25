@@ -1,6 +1,6 @@
 FROM node:7.7.2-slim
 
-RUN apt-get update && apt-get install -f -y postgresql-client
+RUN apt-get update
 COPY package.json /tmp/package.json
 RUN cd /tmp && npm install --quiet
 RUN mkdir -p /usr/app && cp -a /tmp/node_modules /usr/app
