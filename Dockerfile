@@ -1,6 +1,6 @@
-FROM node:7.7.2-slim
+FROM node:7.7.2-alpine
 
-RUN apt-get update && apt-get install -f -y postgresql-client
+RUN apk update && apk add postgresql
 COPY package.json /tmp/package.json
 RUN cd /tmp && npm install --quiet
 RUN mkdir -p /usr/app && cp -a /tmp/node_modules /usr/app
