@@ -1,7 +1,0 @@
-#!/bin/bash
-set -e
-
-bin/wait-for-postgres
-time npm run migrate
-
-time $1

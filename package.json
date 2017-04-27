@@ -14,7 +14,7 @@
     "start": "node ./build/index.js",
     "lint": "eslint src",
     "test": "jest",
-    "watch-tests": "esw src & jest --watchAll",
+    "watch-tests": "npm run migrate && esw src & jest --watchAll",
     "dev": "nodemon --watch ./src --ignore ./src/__tests__ -x \"npm start\"",
     "coverage": "jest --coverage",
     "migrate": "node ./node_modules/db-migrate/bin/db-migrate up all"
