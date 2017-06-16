@@ -8,8 +8,6 @@ services:
     - /usr/app/node_modules
     ports:
       - "3000:3000"
-    links:
-      - postgres
     environment:
       DATABASE_URL: postgres://todoapp@postgres/todos
   postgres:
