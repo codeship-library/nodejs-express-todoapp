@@ -6,7 +6,7 @@
   - name: tests
     service: web_codeship_example_node
     command: bin/ci "npm test -- --forceExit"
-- name: deploy_codeship_example_heroku
+- name: deploy
   tag: master
-  service: deploy
+  service: deploy_codeship_example_heroku
   command: codeship_heroku deploy /deploy nodejs-express-todoapp
