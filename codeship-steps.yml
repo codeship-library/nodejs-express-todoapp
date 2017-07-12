@@ -8,5 +8,5 @@
     command: bin/ci "npm test -- --forceExit"
 - name: deploy
   tag: master
-  service: deploy_codeship_example_heroku
+  service: codeship_heroku_deployment
   command: codeship_heroku deploy /deploy nodejs-express-todoapp
