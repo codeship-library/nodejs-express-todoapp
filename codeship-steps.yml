@@ -1,12 +1,12 @@
 - type: parallel
   steps:
   - name: lint
-    service: web
+    service: web_codeship_example_node
     command: npm run lint
   - name: tests
-    service: web
+    service: web_codeship_example_node
     command: bin/ci "npm test -- --forceExit"
-- name: deploy
+- name: deploy_codeship_example_heroku
   tag: master
   service: deploy
   command: codeship_heroku deploy /deploy nodejs-express-todoapp
