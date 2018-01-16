@@ -1,6 +1,6 @@
 web_codeship_example_node:
   build: .
-  links:
+  depends_on:
     - postgres
   environment:
     DATABASE_URL: "postgres://todoapp@postgres/todos"
