@@ -1,12 +1,12 @@
 - type: parallel
   steps:
   - name: lint
-    service: web_codeship_example_node
+    service: web-codeship-example-node
     command: npm run lint
   - name: tests
-    service: web_codeship_example_node
-    command: bin/ci "npm test -- --forceExit"
+    service: web-codeship-example-node
+    command: /bin/sh -c "npm run migrate && npm test -- --forceExit" # bash wrapper not required unless passing along env variables or combining commands
 - name: deploy
   tag: master
-  service: codeship_heroku_deployment
+  service: codeship-heroku-deployment
   command: codeship_heroku deploy /deploy nodejs-express-todoapp
